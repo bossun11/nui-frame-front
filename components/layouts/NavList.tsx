@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NavList = () => {
   return (
-    <nav className="flex items-center space-x-4 md:space-x-6 text-sm">
+    <nav className="hidden sm:space-x-6 sm:flex sm:items-center">
       <Link
         className="font-medium text-white transition-colors hover:text-slate-200"
         href="/"
