@@ -1,23 +1,32 @@
 "use client";
 
+import RegisterForm from "../form/RegisterForm";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 const HeaderDropdownMenu = () => {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="text-white sm:hidden">
-        Menu
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40 sm:hidden">
-        <DropdownMenuItem className="gap-2">新規登録</DropdownMenuItem>
-        <DropdownMenuItem className="gap-2">ログイン</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <NavigationMenu className="sm:hidden">
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Menu</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="">
+              <li>
+                <RegisterForm />
+              </li>
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 };
 
