@@ -1,6 +1,5 @@
 import Link from "next/link";
 import NavList from "./NavList";
-import HeaderDropdownMenu from "./HeaderDropdownMenu";
 
 const Header = () => {
   return (
@@ -14,7 +13,6 @@ const Header = () => {
             ぬいフレーム
           </Link>
           <NavList />
-          <HeaderDropdownMenu />
         </div>
       </div>
     </div>

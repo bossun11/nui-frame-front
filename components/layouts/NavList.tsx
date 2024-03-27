@@ -1,14 +1,10 @@
 import Link from "next/link";
+import RegisterForm from "../form/RegisterForm";
 
 const NavList = () => {
   return (
-    <nav className="hidden sm:space-x-6 sm:flex sm:items-center">
-      <Link
-        className="font-medium text-white transition-colors hover:text-slate-200"
-        href="/"
-      >
-        新規登録
-      </Link>
+    <nav className="space-x-6 flex items-center">
+      <RegisterForm />
       <Link
         className="font-medium text-white transition-colors hover:text-slate-200"
         href="/about"
