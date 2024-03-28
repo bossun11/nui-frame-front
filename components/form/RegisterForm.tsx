@@ -22,6 +22,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { registerAction } from "@/app/actions/registerAction";
+import { toast } from "react-toastify";
 
 const RegisterForm = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +39,13 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof registerFormSchema>) => {
-    console.log(data);
+    const { name, email, password, passwordConfirmation } = data;
+    try {
+      await registerAction({ name, email, password, passwordConfirmation });
+      toast.success("ユーザー登録が完了しました");
+    } catch (error) {
+      toast.error("ユーザー登録に失敗しました");
+    }
     setOpen(false);
   };
 
@@ -90,7 +98,11 @@ const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>パスワード</FormLabel>
                   <FormControl>
-                    <Input type="password" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="8文字以上で入力してください"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
