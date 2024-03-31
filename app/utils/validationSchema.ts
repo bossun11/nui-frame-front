@@ -23,3 +23,14 @@ export const registerFormSchema = z
     message: "パスワードと確認用パスワードが一致していません",
     path: ["passwordConfirmation"],
   });
+
+export const loginFormSchema = z.object({
+  email: z
+    .string()
+    .min(2, { message: "メールアドレスを入力してください" })
+    .email({ message: "メールアドレスの形式が正しくありません" }),
+  password: z
+    .string()
+    .min(8, { message: "パスワードは8文字以上で入力してください" })
+    .max(100, { message: "パスワードは100文字以下で入力してください" }),
+});
