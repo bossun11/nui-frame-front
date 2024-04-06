@@ -25,10 +25,12 @@ import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
 import { loginAction } from "@/app/actions/loginAction";
 import { useAuthContext } from "@/app/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
   const { setCurrentUser, setIsSignedIn } = useAuthContext();
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(loginFormSchema),
@@ -45,6 +47,7 @@ const LoginForm = () => {
       setIsSignedIn(true);
       setCurrentUser(response.user);
       toast.success("ユーザー登録が完了しました");
+      router.push("/diaries");
     } catch (error) {
       toast.error("ユーザー登録に失敗しました");
     }
