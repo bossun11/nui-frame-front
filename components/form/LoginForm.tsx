@@ -23,9 +23,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
+import { loginAction } from "@/app/actions/loginAction";
+import { useAuthContext } from "@/app/context/AuthContext";
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
+  const { setCurrentUser, setIsSignedIn } = useAuthContext();
 
   const form = useForm({
     resolver: zodResolver(loginFormSchema),
@@ -36,8 +39,11 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof loginFormSchema>) => {
-    console.log(data);
+    const { email, password } = data;
     try {
+      const response = await loginAction({ email, password });
+      setIsSignedIn(true);
+      setCurrentUser(response.user);
       toast.success("ユーザー登録が完了しました");
     } catch (error) {
       toast.error("ユーザー登録に失敗しました");
